@@ -118,3 +118,22 @@ def edit_user_view(request, user_id):
     return render(request, 'edit_user.html', {'user': user})
 def no_permission_view(request):
     return render(request, 'no_permission.html')
+
+
+@api_view(['POST'])
+def login(request):
+    return Response({})
+
+@api_view(['GET'])
+def getUsers(request):
+    return Response({})
+
+@api_view(['POST'])
+def singup(request, user):
+    return Response({})
+@api_view(['GET'])
+def test_token(request):
+    return Response({})
+@api_view(['POST'])
+def login(request):
+    return Response({})
