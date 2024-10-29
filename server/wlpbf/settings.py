@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'users.apps.UsersConfig',
     'trainings.apps.TrainingsConfig',
     'inventory.apps.InventoryConfig',
     'rentals.apps.RentalsConfig',
 
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

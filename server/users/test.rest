@@ -1,0 +1,18 @@
+POST http://localhost:8000/users/login/
+Content-Type: application/json
+
+{"username": "Admin" , "password": "15973"}
+
+###
+
+POST http://localhost:8000/users/singup/
+Content-Type: application/json
+
+{"username": "Admin" ,"email": "test2@example.com" , "password": "15973" , "first_name": "Alex2", "last_name": "Pinto2"}
+
+###
+GET  http://localhost:8000/users/test-token/
+Content-Type: application/json
+Authorization: Token 7678d5785497e0a4deaa05017c364f7779d42cff
+
+{}

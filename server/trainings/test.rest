@@ -1,0 +1,237 @@
+# Test REST API for Paintball Teams
+
+# ===============================================
+# Step 1: Obtain Authentication Token
+# ===============================================
+# This step is necessary to authenticate and obtain a token that will be used in protected requests.
+# After obtaining the token, copy it into the @token variable below.go to test.rest on the users app
+
+# ===============================================
+# Step 2: Set Variables
+# ===============================================
+# Replace the value of @token with the token obtained from the login request.
+# Replace the value of @team_id, @training_day_id, @enrollment_id, and @game_id as needed.
+
+@token = 7678d5785497e0a4deaa05017c364f7779d42cff
+@team_id = 1
+@training_day_id = 1
+@enrollment_id = 1
+@game_id = 1
+
+# ===============================================
+# Step 3: Create a New Team
+# ===============================================
+# Replace `{{token}}` with the actual token value.
+
+POST http://localhost:8000/teamSection/trainings/teams/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "name": "Alpha Strike",
+    "division": "Div5",
+    "owner_name": "Juan Pérez",
+    "contact_number": "555-1234",
+    "contact_email": "juan.perez@alphastrike.com"
+}
+
+# ===============================================
+# Step 4: List All Teams
+# ===============================================
+
+GET http://localhost:8000/teamSection/trainings/teams/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 5: Retrieve a Specific Team
+# ===============================================
+# Replace `{id}` with the ID of the team you want to retrieve.
+
+GET http://localhost:8000/teamSection/trainings/teams/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 6: Update a Team
+# ===============================================
+# Replace `{id}` with the ID of the team you want to update.
+
+PUT http://localhost:8000/teamSection/trainings/teams/{id}/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "name": "Weston Legacy",
+    "division": "Div2",
+    "owner_name": "Crazy Man",
+    "contact_number": "555-5678",
+    "contact_email": "crazy.man@westonlegacy.com"
+}
+
+# ===============================================
+# Step 7: Delete a Team
+# ===============================================
+# Replace `{id}` with the ID of the team you want to delete.
+
+DELETE http://localhost:8000/teamSection/trainings/teams/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 8: Create a New Training Day
+# ===============================================
+
+POST http://localhost:8000/teamSection/trainings/training-days/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "date": "2024-11-15",
+    "location": "Central Arena"
+}
+
+# ===============================================
+# Step 9: List All Training Days
+# ===============================================
+
+GET http://localhost:8000/teamSection/trainings/training-days/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 10: Retrieve a Specific Training Day
+# ===============================================
+# Replace `{id}` with the ID of the training day you want to retrieve.
+
+GET http://localhost:8000/teamSection/trainings/training-days/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 11: Update a Training Day
+# ===============================================
+# Replace `{id}` with the ID of the training day you want to update.
+
+PUT http://localhost:8000/teamSection/trainings/training-days/{id}/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "date": "2024-11-16",
+    "location": "South Arena"
+}
+
+# ===============================================
+# Step 12: Delete a Training Day
+# ===============================================
+# Replace `{id}` with the ID of the training day you want to delete.
+
+DELETE http://localhost:8000/teamSection/trainings/training-days/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 13: Enroll a Team in a Training Day (signupTeam)
+# ===============================================
+# This request does not require authentication (`AllowAny`).
+
+POST http://localhost:8000/teamSection/trainings/signup/
+Content-Type: application/json
+
+{
+    "team_id": 1,
+    "training_day_id": 1
+}
+
+# ===============================================
+# Step 14: List All Enrollments
+# ===============================================
+
+GET http://localhost:8000/teamSection/trainings/enrollments/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 15: Retrieve a Specific Enrollment
+# ===============================================
+# Replace `{id}` with the ID of the enrollment you want to retrieve.
+
+GET http://localhost:8000/teamSection/trainings/enrollments/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 16: Update an Enrollment
+# ===============================================
+# Replace `{id}` with the ID of the enrollment you want to update.
+
+PUT http://localhost:8000/teamSection/trainings/enrollments/{id}/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "team_id": 1,
+    "training_day_id": 2
+}
+
+# ===============================================
+# Step 17: Delete an Enrollment
+# ===============================================
+# Replace `{id}` with the ID of the enrollment you want to delete.
+
+DELETE http://localhost:8000/teamSection/trainings/enrollments/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 18: Create a New Game
+# ===============================================
+
+POST http://localhost:8000/teamSection/trainings/games/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "training_day_id": 1,
+    "home_team_id": 1,
+    "away_team_id": 2,
+    "game_time": "15:30:00"
+}
+
+# ===============================================
+# Step 19: List All Games
+# ===============================================
+
+GET http://localhost:8000/teamSection/trainings/games/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 20: Retrieve a Specific Game
+# ===============================================
+# Replace `{id}` with the ID of the game you want to retrieve.
+
+GET http://localhost:8000/teamSection/trainings/games/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 21: Update a Game
+# ===============================================
+# Replace `{id}` with the ID of the game you want to update.
+
+PUT http://localhost:8000/teamSection/trainings/games/{id}/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "training_day_id": 1,
+    "home_team_id": 1,
+    "away_team_id": 3,
+    "game_time": "16:00:00"
+}
+
+# ===============================================
+# Step 22: Delete a Game
+# ===============================================
+# Replace `{id}` with the ID of the game you want to delete.
+
+DELETE http://localhost:8000/teamSection/trainings/games/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 23: Get Schedule by Date (getScheduleByDate)
+# ===============================================
+# This request does not require authentication (`AllowAny`).
+
+GET http://localhost:8000/teamSection/trainings/get-schedule-by-date/?date=2024-11-15
