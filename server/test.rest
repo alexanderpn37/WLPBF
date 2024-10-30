@@ -29,8 +29,8 @@ POST http://localhost:8000/users/login/
 Content-Type: application/json
 
 {
-    "username": "Admin",
-    "password": "westonlegacy"
+    "username": "lucasparra13",
+    "password": "Lucas24287172"
 }
 
 # ===============================================
@@ -41,7 +41,7 @@ Content-Type: application/json
 
 ### 2. Set Variables
 
-@token = 7678d5785497e0a4deaa05017c364f7779d42cff
+@token = b25edca45d30ebf8456d905d52a2daf715429ac8
 @team_id = 1
 @training_day_id = 1
 @enrollment_id = 1
@@ -90,7 +90,7 @@ Authorization: Token {{token}}
 
 ### 6. Update a Team
 
-PUT http://localhost:8000/teamSection/trainings/teams/{id}/
+PUT http://localhost:8000/teamSection/trainings/teams/1/
 Authorization: Token {{token}}
 Content-Type: application/json
 
