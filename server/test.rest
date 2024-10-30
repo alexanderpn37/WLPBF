@@ -7,16 +7,15 @@
 # After obtaining the token, copy it into the @token variable below.
 
 
-POST http://localhost:8000/users/singup
+POST http://localhost:8000/users/signup
 Content-Type: application/json
 
 {
-    "username": "Admin",
+    "username": "Admin3",
     "password": "westonlegacy",
     "email": "admin@example.com",
     "first_name" : "Alex",
-    "last_name": "Weston",
-
+    "last_name": "Weston"
 }
 
 
