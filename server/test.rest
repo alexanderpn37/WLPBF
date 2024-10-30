@@ -346,3 +346,12 @@ Content-Type: application/json
 
 DELETE http://localhost:8000/rentals/reservation/1/
 Authorization: Token {{token}}
+
+# ===============================================
+# Step 29: List Rentals by Date Range
+# ===============================================
+
+### 29. List Rentals by Date Range
+
+GET http://localhost:8000/rentals/reservation/?start_date=2024-12-01&end_date=2024-12-31
+Authorization: Token {{token}}
