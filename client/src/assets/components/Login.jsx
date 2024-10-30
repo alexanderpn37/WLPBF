@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-const [formData, setFormData] = useState({ email:'', password: '', name: '' });
+const [formData, setFormData] = useState({ username:'', password: ''});
 const [error, setError] = useState('');
 const [success, setSuccess] = useState('');
 const navigate = useNavigate();
@@ -14,7 +14,7 @@ const changeHandler = (e) => {
 const submitHandler = async (e) => {
     e.preventDefault();
     try {
-    const response = await axios.post('http://localhost:8005/api/login', formData);
+    const response = await axios.post('http://localhost:8000/users/login/', formData);
     const { token, User } = response.data;
     console.log(response.data);
 
@@ -35,10 +35,10 @@ return (
         <div className="mb-3">
         <input 
             type="text" 
-            name="email" 
+            name="username" 
             className="form-control" 
-            placeholder="Email address  " 
-            value={formData.email} 
+            placeholder="Username  " 
+            value={formData.username} 
             onChange={changeHandler} 
             required 
         />
