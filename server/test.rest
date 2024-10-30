@@ -1,0 +1,348 @@
+# Test REST API for Paintball Teams and Rentals
+
+# ===============================================
+# Step 1: Obtain Authentication Token
+# ===============================================
+# This step is necessary to authenticate and obtain a token that will be used in protected requests.
+# After obtaining the token, copy it into the @token variable below.
+
+### 1. Obtain Authentication Token
+
+POST http://localhost:8000/users/login/
+Content-Type: application/json
+
+{
+    "username": "Admin",
+    "password": "westonlegacy"
+}
+
+# ===============================================
+# Step 2: Set Variables
+# ===============================================
+# Replace the value of @token with the token obtained from the login request.
+# Replace the values of @team_id, @training_day_id, @enrollment_id, @game_id, and @rental_id as needed.
+
+### 2. Set Variables
+
+@token = 7678d5785497e0a4deaa05017c364f7779d42cff
+@team_id = 1
+@training_day_id = 1
+@enrollment_id = 1
+@game_id = 1
+@rental_id = 1
+
+# ===============================================
+# Step 3: Create a New Team
+# ===============================================
+
+### 3. Create a New Team
+
+POST http://localhost:8000/teamSection/trainings/teams/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "name": "Alpha Strike",
+    "division": "Div5",
+    "owner_name": "Juan Pérez",
+    "contact_number": "555-1234",
+    "contact_email": "juan.perez@alphastrike.com"
+}
+
+# ===============================================
+# Step 4: List All Teams
+# ===============================================
+
+### 4. List All Teams
+
+GET http://localhost:8000/teamSection/trainings/teams/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 5: Retrieve a Specific Team
+# ===============================================
+
+### 5. Retrieve a Specific Team
+
+GET http://localhost:8000/teamSection/trainings/teams/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 6: Update a Team
+# ===============================================
+
+### 6. Update a Team
+
+PUT http://localhost:8000/teamSection/trainings/teams/{id}/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "name": "Weston Legacy",
+    "division": "Div2",
+    "owner_name": "Crazy Man",
+    "contact_number": "555-5678",
+    "contact_email": "crazy.man@westonlegacy.com"
+}
+
+# ===============================================
+# Step 7: Delete a Team
+# ===============================================
+
+### 7. Delete a Team
+
+DELETE http://localhost:8000/teamSection/trainings/teams/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 8: Create a New Training Day
+# ===============================================
+
+### 8. Create a New Training Day
+
+POST http://localhost:8000/teamSection/trainings/training-days/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "date": "2024-11-15",
+    "location": "Field 1"
+}
+
+# ===============================================
+# Step 9: List All Training Days
+# ===============================================
+
+### 9. List All Training Days
+
+GET http://localhost:8000/teamSection/trainings/training-days/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 10: Retrieve a Specific Training Day
+# ===============================================
+
+### 10. Retrieve a Specific Training Day
+
+GET http://localhost:8000/teamSection/trainings/training-days/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 11: Update a Training Day
+# ===============================================
+
+### 11. Update a Training Day
+
+PUT http://localhost:8000/teamSection/trainings/training-days/{id}/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "date": "2024-11-16",
+    "location": "Field 2"
+}
+
+# ===============================================
+# Step 12: Delete a Training Day
+# ===============================================
+
+### 12. Delete a Training Day
+
+DELETE http://localhost:8000/teamSection/trainings/training-days/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 13: Enroll a Team in a Training Day (signupTeam)
+# ===============================================
+# This request does not require authentication (`AllowAny`).
+
+### 13. Enroll a Team in a Training Day (signupTeam)
+
+POST http://localhost:8000/teamSection/trainings/signup/
+Content-Type: application/json
+
+{
+    "team_id": 1,
+    "training_day_id": 1
+}
+
+# ===============================================
+# Step 14: List All Enrollments
+# ===============================================
+
+### 14. List All Enrollments
+
+GET http://localhost:8000/teamSection/trainings/enrollments/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 15: Retrieve a Specific Enrollment
+# ===============================================
+
+### 15. Retrieve a Specific Enrollment
+
+GET http://localhost:8000/teamSection/trainings/enrollments/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 16: Update an Enrollment
+# ===============================================
+
+### 16. Update an Enrollment
+
+PUT http://localhost:8000/teamSection/trainings/enrollments/{id}/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "team_id": 1,
+    "training_day_id": 2
+}
+
+# ===============================================
+# Step 17: Delete an Enrollment
+# ===============================================
+
+### 17. Delete an Enrollment
+
+DELETE http://localhost:8000/teamSection/trainings/enrollments/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 18: Create a New Game
+# ===============================================
+
+### 18. Create a New Game
+
+POST http://localhost:8000/teamSection/trainings/games/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "training_day_id": 1,
+    "home_team_id": 1,
+    "away_team_id": 2,
+    "game_time": "15:30:00"
+}
+
+# ===============================================
+# Step 19: List All Games
+# ===============================================
+
+### 19. List All Games
+
+GET http://localhost:8000/teamSection/trainings/games/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 20: Retrieve a Specific Game
+# ===============================================
+
+### 20. Retrieve a Specific Game
+
+GET http://localhost:8000/teamSection/trainings/games/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 21: Update a Game
+# ===============================================
+
+### 21. Update a Game
+
+PUT http://localhost:8000/teamSection/trainings/games/{id}/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "training_day_id": 1,
+    "home_team_id": 1,
+    "away_team_id": 3,
+    "game_time": "16:00:00"
+}
+
+# ===============================================
+# Step 22: Delete a Game
+# ===============================================
+
+### 22. Delete a Game
+
+DELETE http://localhost:8000/teamSection/trainings/games/{id}/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 23: Get Schedule by Date (getScheduleByDate)
+# ===============================================
+# This request does not require authentication (`AllowAny`).
+
+### 23. Get Schedule by Date (getScheduleByDate)
+
+GET http://localhost:8000/teamSection/trainings/get-schedule-by-date/?date=2024-11-15
+
+# ===============================================
+# Step 24: Create a New Rental
+# ===============================================
+
+### 24. Create a New Rental
+
+POST http://localhost:8000/rentals/reservation/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "first_name": "Carlos",
+    "last_name": "Angulo",
+    "phone_number": "555-6789-651",
+    "email": "alice.smith@example.com",
+    "rental_date": "2024-12-01",
+    "rental_time": "14:00:00",
+    "number_of_players": 2,
+    "caliber": "50 cal"
+}
+
+# ===============================================
+# Step 25: List All Rentals
+# ===============================================
+
+### 25. List All Rentals
+
+GET http://localhost:8000/rentals/reservation/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 26: Retrieve a Specific Rental
+# ===============================================
+
+### 26. Retrieve a Specific Rental
+
+GET http://localhost:8000/rentals/reservation/1/
+Authorization: Token {{token}}
+
+# ===============================================
+# Step 27: Update a Rental
+# ===============================================
+
+### 27. Update a Rental
+
+PUT http://localhost:8000/rentals/reservation/1/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+    "first_name": "Alice",
+    "last_name": "Johnson",
+    "phone_number": "555-6789",
+    "email": "alice.johnson@example.com",
+    "rental_date": "2024-12-02",
+    "rental_time": "15:00:00",
+    "number_of_players": 3,
+    "caliber": "68 cal"
+}
+
+# ===============================================
+# Step 28: Delete a Rental
+# ===============================================
+
+### 28. Delete a Rental
+
+DELETE http://localhost:8000/rentals/reservation/1/
+Authorization: Token {{token}}
