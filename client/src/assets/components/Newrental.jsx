@@ -3,28 +3,33 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Newrental = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [first_name, setFirstName] = useState('');
+    const [last_name, setLastName] = useState('');
+    const [phone_number, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [numberOfPlayers, setNumberOfPlayers] = useState('');
+    const [rental_date, setDate] = useState('');
+    const [rental_time, setTime] = useState('');
+    const [number_of_players, setNumberOfPlayers] = useState('');
     const [caliber, setCaliber] = useState('');
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
+    const token = localStorage.getItem('token');
 
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8005/api/patients", {
-            firstName,
-            lastName,
-            phoneNumber,
+        axios.post("http://localhost:8000/rentals/reservation/", {
+            first_name,
+            last_name,
+            phone_number,
             email,
-            date,
-            time,
-            numberOfPlayers,
+            rental_date,
+            rental_time,
+            number_of_players,
             caliber 
+        }, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
         })
         .then((res) => {
             console.log(res);
@@ -50,11 +55,11 @@ const Newrental = () => {
                     <input
                         type="text"
                         className="form-control"
-                        value={firstName}
+                        value={first_name}
                         placeholder="First Name..."
                         onChange={(e) => setFirstName(e.target.value)}
                     />
-                    {errors.firstName && <p className="text-danger">{errors.firstName.message}</p>}
+                    {errors.first_name && <p className="text-danger">{errors.first_name.message}</p>}
                 </div>
 
                 <div className="mb-3">
@@ -62,11 +67,11 @@ const Newrental = () => {
                     <input
                         type="text"
                         className="form-control"
-                        value={lastName}
+                        value={last_name}
                         placeholder="Last Name..."
                         onChange={(e) => setLastName(e.target.value)}
                     />
-                    {errors.lastName && <p className="text-danger">{errors.lastName.message}</p>}
+                    {errors.last_name && <p className="text-danger">{errors.last_name.message}</p>}
                 </div>
 
                 <div className="mb-3">
@@ -74,11 +79,11 @@ const Newrental = () => {
                     <input
                         type="tel"
                         className="form-control"
-                        value={phoneNumber}
+                        value={phone_number}
                         placeholder="Phone Number..."
                         onChange={(e) => setPhoneNumber(e.target.value)}
                     />
-                    {errors.phoneNumber && <p className="text-danger">{errors.phoneNumber.message}</p>}
+                    {errors.phone_number && <p className="text-danger">{errors.phone_number.message}</p>}
                 </div>
 
                 <div className="mb-3">
@@ -98,10 +103,10 @@ const Newrental = () => {
                     <input
                         type="date"
                         className="form-control"
-                        value={date}
+                        value={rental_date}
                         onChange={(e) => setDate(e.target.value)}
                     />
-                    {errors.date && <p className="text-danger">{errors.date.message}</p>}
+                    {errors.rental_date && <p className="text-danger">{errors.rental_date.message}</p>}
                 </div>
 
                 <div className="mb-3">
@@ -109,10 +114,10 @@ const Newrental = () => {
                     <input
                         type="time"
                         className="form-control"
-                        value={time}
+                        value={rental_time}
                         onChange={(e) => setTime(e.target.value)}
                     />
-                    {errors.time && <p className="text-danger">{errors.time.message}</p>}
+                    {errors.rental_time && <p className="text-danger">{errors.rental_time.message}</p>}
                 </div>
 
                 <div className="mb-3">
@@ -120,11 +125,11 @@ const Newrental = () => {
                     <input
                         type="number"
                         className="form-control"
-                        value={numberOfPlayers}
+                        value={number_of_players}
                         placeholder="Number of Players..."
                         onChange={(e) => setNumberOfPlayers(e.target.value)}
                     />
-                    {errors.numberOfPlayers && <p className="text-danger">{errors.numberOfPlayers.message}</p>}
+                    {errors.number_of_players && <p className="text-danger">{errors.number_of_players.message}</p>}
                 </div>
 
                 <div className="mb-3">

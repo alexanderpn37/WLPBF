@@ -18,7 +18,7 @@ const Dashboard = () => {
                 <Link to="/home" style={{ textDecoration: "none", color: "inherit" }}>WLPF</Link>
                 </h1>
 
-                    {/* Links for navigation */}
+                    
                     <div className="navbar" id="navbarNav">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
@@ -32,7 +32,7 @@ const Dashboard = () => {
                             </li>
                         </ul>
 
-                        {/* Logout button on the right */}
+
                         <button className="btn btn-outline-danger" onClick={handleLogout}>
                             Logout
                         </button>

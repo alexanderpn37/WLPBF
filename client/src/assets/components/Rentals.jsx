@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 
 const Rentals = () => {
     const [allRentals, setAllRentals] = useState([]);
-
+    const token = localStorage.getItem('token');
+    
     useEffect(() => {
-        axios.get("http://localhost:8000/api/rentals")
-            .then(res => setAllRentals(res.data))
-            .catch(err => console.log("Error fetching all rentals:", err));
+        axios.get("http://localhost:8000/rentals/reservation/", {
+            headers: {
+                Authorization: `Token ${token}`,
+            },
+        })
+        .then(res => setAllRentals(res.data))
+        .catch(err => console.log("Error fetching all rentals:", err));
     }, []);
 
     return (
@@ -34,17 +39,17 @@ const Rentals = () => {
                     {allRentals.map(rental => (
                         <tr key={rental._id}>
                             <td>
-                                <Link to={`/${rental._id}/details`}>
+                                <Link to={`/${rental.id}/details`}>
                                     {rental.id}
                                 </Link>
                             </td>
-                            <td>{rental.firstName}</td>
-                            <td>{rental.lastName}</td>
-                            <td>{rental.phoneNumber}</td>
+                            <td>{rental.first_name}</td>
+                            <td>{rental.last_name}</td>
+                            <td>{rental.phone_number}</td>
                             <td>{rental.email}</td>
-                            <td>{new Date(rental.date).toLocaleDateString()}</td>
-                            <td>{rental.time}</td>
-                            <td>{rental.numberOfPlayers}</td>
+                            <td>{new Date(rental.rental_date).toLocaleDateString()}</td>
+                            <td>{rental.rental_time}</td>
+                            <td>{rental.number_of_players}</td>
                             <td>{rental.caliber}</td>
                         </tr>
                     ))}

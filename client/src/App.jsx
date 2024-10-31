@@ -8,10 +8,11 @@ import Dashboard from './assets/components/Dashboard';
 import Home from './assets/components/Home';
 import Rentals from './assets/components/Rentals';
 import Newrental from './assets/components/Newrental';
+import Details from './assets/components/Details';
+import Update from './assets/components/Update';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -25,25 +26,23 @@ function App() {
       {isAuthenticated ? (
         <>
           <Dashboard />
-
           <Routes>
-          
-
-
+            <Route path="/home" element={<Home />} />
+            <Route path="/rentals" element={<Rentals />} />
+            <Route path="/rentals/newrental" element={<Newrental />} />
+            <Route path="/:id/details" element={<Details />} />
+            <Route path="/:id/update" element={<Update />} />
+            <Route path="*" element={<Navigate to="/home" />} />
           </Routes>
         </>
       ) : (
-
         <>
-        <Dashboard />
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/rentals" element={<Rentals />} />
-          <Route path="*" element={<Navigate to="/" />} />
-          <Route path="rentals/newrental" element={<Newrental />} />
-        </Routes>
+          <Dashboard />
+          <Routes>
+            <Route path="/" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
         </>
       )}
     </>
@@ -51,4 +50,5 @@ function App() {
 }
 
 export default App;
+
 
